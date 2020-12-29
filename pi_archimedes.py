@@ -1,11 +1,11 @@
 # pi_archimedes.py
-'''
-The program outputs a value of pi for a given number of a decimal places according to Archimedes algorithm.
-The maximum precision is limited to 15 decimal places.
-The program will do the iterations (increasing the polygon side number) until the digit on given number + 1 stabilize.
-While loop is implemented to ensure the integer number is entered  
 
-'''
+# The program outputs a value of pi for a given number of a decimal places according to Archimedes algorithm.
+# The maximum precision is limited to 15 decimal places.
+# The program will do the iterations (increasing the polygon side number) until the digit on given number + 1 stabilize.
+# While loop is implemented to ensure the integer number is entered  
+# In case the negative number od decimal places is entered the value of 0.0 is returned 
+
 
 while True:
     try:
@@ -14,24 +14,22 @@ while True:
     except:
         continue
 
-n = 6
-s = 1.0
-pi_contr = 1.0
+num_of_sides = 6
+length_of_side = 1.0
+pi_previous = 1.0
 
 while True:
 
-    a = (1-(s/2)**2)**0.5
-    b = 1 - a
-    circumference = n*s
-    pi_arch = circumference/2
+    triangle_height = (1-(length_of_side/2)**2)**0.5
+    circumference = num_of_sides * length_of_side
+    pi_archimedes = circumference/2
 
-    s_new = (b**2 + (s/2)**2)**0.5
-    s = s_new
-    n *= 2
+    length_of_side = ((1 - triangle_height)**2 + (length_of_side/2)**2)**0.5
+    num_of_sides *= 2
 
-    if round(pi_arch, num+1) == round(pi_contr, num+1):
+    if round(pi_archimedes, num+1) == round(pi_previous, num+1):
         break
         
-    pi_contr = pi_arch
+    pi_previous = pi_archimedes
 
-print(round(pi_arch, num))
+print(round(pi_archimedes, num))
